@@ -52,39 +52,7 @@ func main() {
 
 	db.AutoMigrate(&models.User{})
 
-	// defer db.Close()
-
-
-	// v1 := r.Group("/api")
-	// {
-	// 	/*** START USER ***/
-	// 	user := new(controllers.UserController)
-
-	// 	v1.GET("/", user.HealthCheck)
-
-	// 	v1.GET("/user/", user.FindAllUsers)
-		
-	// }
-
-	r.LoadHTMLGlob("./public/html/*")
-
-	r.Static("/public", "./public")
-
-	// userRepository := repositories.NewUserRepository(db)
-
 	route := routes.SetupRoutes()
-
-
-	// r.GET("/", func(c *gin.Context) {
-	// 	c.HTML(http.StatusOK, "index.html", gin.H{
-	// 		"ginBoilerplateVersion": "v0.03",
-	// 		"goVersion":             runtime.Version(),
-	// 	})
-	// })
-
-	// r.NoRoute(func(c *gin.Context) {
-	// 	c.HTML(404, "404.html", gin.H{})
-	// })
 
 	port := os.Getenv("PORT")
 
