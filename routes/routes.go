@@ -14,7 +14,11 @@ func SetupRoutes() *gin.Engine {
 	userController := new(controllers.UserController)
 	{
 		api.GET("/user/", userController.FindAllUsers)
-
+		api.GET("/user/:id", userController.FindUserById)
+		// api.GET("/user/:name", userController.FindUserByName)
+		api.POST("/user/", userController.CreateUser)
+		api.DELETE("/user/:id", userController.DeleteUser)
+		api.PUT("/user/:id", userController.UpdateUser)
 	}
 
 	return route
