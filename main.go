@@ -1,15 +1,18 @@
 package main
 
 import (
-	"github.com/joho/godotenv"
 	"log"
+
+	"github.com/joho/godotenv"
+
 	// "fmt"
 	// "runtime"
-	"os"
-	"github.com/gin-gonic/gin"
 	db "hustchihieu/todolist-golang/database"
 	models "hustchihieu/todolist-golang/models"
 	routes "hustchihieu/todolist-golang/routes"
+	"os"
+
+	"github.com/gin-gonic/gin"
 	// repositories "hustchihieu/todolist-golang/repositories"
 )
 
@@ -30,14 +33,13 @@ func CORSMiddleware() gin.HandlerFunc {
 	}
 }
 
-
 func main() {
 
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("error: failed to load the env file")
 	}
-	
+
 	if os.Getenv("ENV") == "PRODUCTION" {
 		gin.SetMode(gin.ReleaseMode)
 	}
@@ -47,10 +49,10 @@ func main() {
 
 	r.Use(CORSMiddleware())
 
-	
 	db := db.ConnectDB()
 
 	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.Company{})
 
 	route := routes.SetupRoutes()
 

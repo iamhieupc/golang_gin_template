@@ -1,8 +1,9 @@
 package repositories
 
 import (
-	"gorm.io/gorm"
 	"hustchihieu/todolist-golang/models"
+
+	"gorm.io/gorm"
 )
 
 type UserRepository struct {
@@ -12,7 +13,6 @@ type UserRepository struct {
 func NewUserRepository(db *gorm.DB) *UserRepository {
 	return &UserRepository{db: db}
 }
-
 
 func (r UserRepository) FindAll() RepositoryResult {
 	var users models.Users

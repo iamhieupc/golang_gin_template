@@ -1,16 +1,17 @@
 package controllers
 
 import (
-	"net/http"
-	"github.com/gin-gonic/gin"
-	"hustchihieu/todolist-golang/services"
-	"hustchihieu/todolist-golang/repositories"
+	db "hustchihieu/todolist-golang/database"
 	"hustchihieu/todolist-golang/helpers"
 	"hustchihieu/todolist-golang/models"
-	db "hustchihieu/todolist-golang/database"
+	"hustchihieu/todolist-golang/repositories"
+	"hustchihieu/todolist-golang/services"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-//UserController ...
+// UserController ...
 type UserController struct{}
 
 var database = db.ConnectDB()
@@ -18,7 +19,7 @@ var userRepository = repositories.NewUserRepository(database)
 
 func (ctrl UserController) FindAllUsers(context *gin.Context) {
 	code := http.StatusOK
-	
+
 	userService := new(services.UserService)
 	response := userService.FindAllUsers(*userRepository)
 
@@ -127,5 +128,3 @@ func (ctrl UserController) UpdateUser(context *gin.Context) {
 
 // 	return context.JSON(code, response)
 // }
-
-
